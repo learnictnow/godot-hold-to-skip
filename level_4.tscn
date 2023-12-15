@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6uc0g6mt0dfj"]
+
+[ext_resource type="Script" path="res://level.gd" id="1_4cqnn"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_vk8w5"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_i8vfp"]
+size = Vector2(20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0b02t"]
+albedo_color = Color(1, 1, 0.113725, 1)
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_4cqnn")
+level_number = 4
+scene_name = "res://level_1.tscn"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 10, 10, 10)
+
+[node name="Ground" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_vk8w5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_i8vfp")
+surface_material_override/0 = SubResource("StandardMaterial3D_0b02t")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer" type="VBoxContainer" parent="UI/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/CenterContainer/BoxContainer"]
+layout_mode = 2
+text = "Level"
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/CenterContainer/BoxContainer"]
+layout_mode = 2
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 50, 0)
