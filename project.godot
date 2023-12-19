@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Test Concepts"
+config/name="Godot 4 Hold To Skip"
 run/main_scene="res://level.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
